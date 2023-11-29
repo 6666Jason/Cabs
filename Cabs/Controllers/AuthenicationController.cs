@@ -109,6 +109,50 @@ namespace Cabs.Controllers
 
         }
 
+        [HttpGet]
+        public async Task<IActionResult> ListDriver()
+        {
+            try
+            {
+                var result = await authRepo.ListDriver();
+                if (result != null)
+                {
+                    return CustomMethodResponse.GetListResponse200Ok(result, "Get list success");
+                }
+                else
+                {
+                    return CustomMethodResponse.GetResponse404NotFound("Get list fail");
+                }
+            }
+            catch (Exception ex)
+            {
+                return CustomMethodResponse.Response500Error(ex);
+            }
+
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ListOrganization()
+        {
+            try
+            {
+                var result = await authRepo.ListOrganization();
+                if (result != null)
+                {
+                    return CustomMethodResponse.GetListResponse200Ok(result, "Get list success");
+                }
+                else
+                {
+                    return CustomMethodResponse.GetResponse404NotFound("Get list fail");
+                }
+            }
+            catch (Exception ex)
+            {
+                return CustomMethodResponse.Response500Error(ex);
+            }
+
+        }
+
         [HttpPost]
         public async Task<IActionResult> SendEmail(MailConfig mailConfig)
         {

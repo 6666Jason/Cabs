@@ -9,6 +9,8 @@ namespace Cabs.Repositories.Authenication
     public interface IAuthRepository
     {
         Task<IEnumerable<ListAdmin>> ListAdmin();
+        Task<IEnumerable<ListDriver>> ListDriver();
+        Task<IEnumerable<ListOrganization>> ListOrganization();
         Task<RegisterModel> Register(RegisterModel model);
         Task<string> Login(LoginModel model);
         Task SendMail(MailConfig mailConfig);

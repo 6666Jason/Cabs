@@ -119,6 +119,38 @@ namespace Cabs.Services.Authenication
             } return null;
         }
 
+        public async Task<IEnumerable<ListDriver>> ListDriver()
+        {
+            var list = await dbcontext.Users.Where(u => u.Role == RoleModel.Driver)
+                                            .Select(l => new ListDriver
+                                            {
+                                                Id = l.Id,
+                                                Name = l.Name,
+                                                Email = l.Email,
+                                            }).ToListAsync();
+            if (list.Count > 0 && list.Any())
+            {
+                return list;
+            }
+            return null;
+        }
+
+        public async Task<IEnumerable<ListOrganization>> ListOrganization()
+        {
+            var list = await dbcontext.Users.Where(u => u.Role == RoleModel.Organization)
+                                            .Select(l => new ListOrganization
+                                            {
+                                                Id = l.Id,
+                                                Name = l.Name,
+                                                Email = l.Email,
+                                            }).ToListAsync();
+            if (list.Count > 0 && list.Any())
+            {
+                return list;
+            }
+            return null;
+        }
+
         public async Task SendMail(MailConfig mailConfig)
         {
             var message = new MailMessage(FromMail.MailSend, mailConfig.ToMail);
