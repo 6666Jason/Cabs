@@ -14,6 +14,7 @@ namespace Cabs.Areas.Website.Models
         public string ImagePath { get; set; } = string.Empty;
         public string Url { get; set; } = string.Empty;
         public string FileName { get; set; } = string.Empty;
+        public int? ProgramId { get; set; }
 
         [ForeignKey("DriverFkId")]
         public int DriverFkId { get; set; }

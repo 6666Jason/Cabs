@@ -25,6 +25,46 @@ namespace Cabs.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "CompanyDtos",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CompanyName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ContactPerson = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Designation = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Mobile = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Telephone = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FaxNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    MembershipType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PaymentType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Image = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CompanyDtos", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Programs",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Budget = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Status = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Programs", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Roles",
                 columns: table => new
                 {
@@ -443,8 +483,12 @@ namespace Cabs.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ImageName = table.Column<string>(type: "nvarchar(152)", maxLength: 152, nullable: false),
                     ImagePath = table.Column<string>(type: "nvarchar(152)", maxLength: 152, nullable: false),
+                    Url = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FileName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ProgramId = table.Column<int>(type: "int", nullable: true),
                     DriverFkId = table.Column<int>(type: "int", nullable: false),
                     CompanyFkId = table.Column<int>(type: "int", nullable: false),
+                    ProgramsId = table.Column<int>(type: "int", nullable: true),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreateBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -463,6 +507,11 @@ namespace Cabs.Migrations
                         name: "FK_Images_Drivers_DriverFkId",
                         column: x => x.DriverFkId,
                         principalTable: "Drivers",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Images_Programs_ProgramsId",
+                        column: x => x.ProgramsId,
+                        principalTable: "Programs",
                         principalColumn: "Id");
                 });
 
@@ -579,6 +628,11 @@ namespace Cabs.Migrations
                 column: "DriverFkId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Images_ProgramsId",
+                table: "Images",
+                column: "ProgramsId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Payments_BookingFkId",
                 table: "Payments",
                 column: "BookingFkId",
@@ -624,6 +678,9 @@ namespace Cabs.Migrations
                 name: "BookingDrivers");
 
             migrationBuilder.DropTable(
+                name: "CompanyDtos");
+
+            migrationBuilder.DropTable(
                 name: "Feedbacks");
 
             migrationBuilder.DropTable(
@@ -646,6 +703,9 @@ namespace Cabs.Migrations
 
             migrationBuilder.DropTable(
                 name: "Drivers");
+
+            migrationBuilder.DropTable(
+                name: "Programs");
 
             migrationBuilder.DropTable(
                 name: "Companies");

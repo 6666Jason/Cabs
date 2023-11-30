@@ -158,6 +158,7 @@ namespace Cabs.Data
         public DbSet<BookingDriver>? BookingDrivers { get; set; }
         public DbSet<User>? Users { get; set; }
         public DbSet<RoleModel>? Roles { get; set; }
+        public DbSet<Programs> Programs { get; set; }
     }
 }
 

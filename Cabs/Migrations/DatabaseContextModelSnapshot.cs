@@ -22,6 +22,46 @@ namespace Cabs.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("Cabs.Areas.Website.ModelDtos.CompanyDto", b =>
+                {
+                    b.Property<int?>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"), 1L, 1);
+
+                    b.Property<string>("CompanyName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ContactPerson")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Designation")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FaxNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MembershipType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Mobile")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PaymentType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Telephone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CompanyDtos");
+                });
+
             modelBuilder.Entity("Cabs.Areas.Website.Models.AdvertiseImageModels", b =>
                 {
                     b.Property<int>("ImageId")
@@ -473,6 +513,10 @@ namespace Cabs.Migrations
                     b.Property<int>("DriverFkId")
                         .HasColumnType("int");
 
+                    b.Property<string>("FileName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ImageName")
                         .IsRequired()
                         .HasMaxLength(152)
@@ -486,6 +530,12 @@ namespace Cabs.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
+                    b.Property<int?>("ProgramId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ProgramsId")
+                        .HasColumnType("int");
+
                     b.Property<string>("UpdateBy")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -493,11 +543,17 @@ namespace Cabs.Migrations
                     b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Url")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CompanyFkId");
 
                     b.HasIndex("DriverFkId");
+
+                    b.HasIndex("ProgramsId");
 
                     b.ToTable("Images");
                 });
@@ -554,6 +610,40 @@ namespace Cabs.Migrations
                         .IsUnique();
 
                     b.ToTable("Payments");
+                });
+
+            modelBuilder.Entity("Cabs.Areas.Website.Models.Programs", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<decimal?>("Budget")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Programs");
                 });
 
             modelBuilder.Entity("Cabs.Areas.Website.Models.User", b =>
@@ -920,6 +1010,10 @@ namespace Cabs.Migrations
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
+                    b.HasOne("Cabs.Areas.Website.Models.Programs", null)
+                        .WithMany("Images")
+                        .HasForeignKey("ProgramsId");
+
                     b.Navigation("Company");
 
                     b.Navigation("Driver");
@@ -1024,6 +1118,11 @@ namespace Cabs.Migrations
             modelBuilder.Entity("Cabs.Areas.Website.Models.ImageModel", b =>
                 {
                     b.Navigation("ImageAdvertises");
+                });
+
+            modelBuilder.Entity("Cabs.Areas.Website.Models.Programs", b =>
+                {
+                    b.Navigation("Images");
                 });
 
             modelBuilder.Entity("Cabs.Areas.Website.Models.User", b =>

@@ -7,6 +7,13 @@ using System.Text;
 using Cabs.Areas.Website.Models;
 using Cabs.Areas.Website.Services.Authenication;
 using Cabs.Areas.Website.Repositories.Authenication;
+using Cabs.Areas.Website.Repositories.Company;
+using Cabs.Areas.Website.Services.Company;
+using Cabs.Areas.Website.Repositories.UploadFileRepo;
+using Cabs.Areas.Website.Services.UploadFileService;
+using AutoMapper;
+using Microsoft.Extensions.FileProviders;
+using Cabs.Areas.Website.Requests.Program;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +24,7 @@ builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddAutoMapper(typeof(ProgramProfile));
 
 // config identity
 builder.Services.AddIdentity<User, IdentityRole<int>>(options => options.User.RequireUniqueEmail = true)
@@ -34,6 +42,8 @@ builder.Services.AddDbContext<DatabaseContext>(options =>
 
 // config DI
 builder.Services.AddScoped<IAuthRepository, AuthServiceImp>();
+builder.Services.AddScoped<ICompanyRepository, CompanyService>();
+builder.Services.AddScoped<IFileRepository, FileServiceImp>();
 
 // config cors dung tren trinh duyet
 builder.Services.AddCors(options =>
@@ -72,8 +82,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseAuthentication();
 app.UseAuthorization();
-
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(Path.Combine(builder.Environment.ContentRootPath, "Uploads")),
+    //RequestPath = "/"
+});
 app.MapControllers();
 
 app.Run();

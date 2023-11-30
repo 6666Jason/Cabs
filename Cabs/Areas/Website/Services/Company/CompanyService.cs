@@ -33,7 +33,7 @@ namespace Cabs.Areas.Website.Services.Company
                 {
                     // Set properties of ImageModel, e.g., FileName, URL, etc.
                     FileName = fileName,
-                    Url = "http://localhost:5065/Company/" + fileName
+                    Url = "http://localhost:5080/Company/" + fileName
                 };
 
                 // Create a collection for Images if it's not already initialized
