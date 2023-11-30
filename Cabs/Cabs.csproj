@@ -26,8 +26,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Repositories\" />
-    <Folder Include="Services\" />
+    <Folder Include="Areas\Admin\" />
+    <Folder Include="Areas\Website\Repositories\" />
+    <Folder Include="Areas\Website\Services\" />
   </ItemGroup>
 
 </Project>

@@ -1,8 +1,8 @@
-﻿using Cabs.Models.Authenication;
+﻿using Cabs.Areas.Website.Models;
+using Cabs.Areas.Website.Models.Authenication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using TaxiDemo.Models;
 
 namespace Cabs.Data
 {

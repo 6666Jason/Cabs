@@ -1,12 +1,12 @@
 using Cabs.Data;
-using Cabs.Services.Authenication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using Cabs.Repositories.Authenication;
 using System.Text;
-using TaxiDemo.Models;
+using Cabs.Areas.Website.Models;
+using Cabs.Areas.Website.Services.Authenication;
+using Cabs.Areas.Website.Repositories.Authenication;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -22,7 +22,89 @@ namespace Cabs.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("Cabs.Models.Authenication.RoleModel", b =>
+            modelBuilder.Entity("Cabs.Areas.Website.Models.AdvertiseImageModels", b =>
+                {
+                    b.Property<int>("ImageId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("AdvertiseId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ImageId", "AdvertiseId");
+
+                    b.HasIndex("AdvertiseId");
+
+                    b.ToTable("AdvertiseImages");
+                });
+
+            modelBuilder.Entity("Cabs.Areas.Website.Models.AdvertiseModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("CompanyFkId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CompanyName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CreateBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Designation")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("DriverFkId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FaxNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Mobile")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PaymentType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Telephone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UpdateBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CompanyFkId");
+
+                    b.HasIndex("DriverFkId");
+
+                    b.ToTable("Advertises");
+                });
+
+            modelBuilder.Entity("Cabs.Areas.Website.Models.Authenication.RoleModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -50,6 +132,517 @@ namespace Cabs.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Roles");
+                });
+
+            modelBuilder.Entity("Cabs.Areas.Website.Models.BookingCompany", b =>
+                {
+                    b.Property<int>("BookingFkId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CompanyFkId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CreateBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UpdateBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("BookingFkId", "CompanyFkId");
+
+                    b.HasIndex("CompanyFkId");
+
+                    b.ToTable("BookingCompanies");
+                });
+
+            modelBuilder.Entity("Cabs.Areas.Website.Models.BookingDriver", b =>
+                {
+                    b.Property<int>("BookingFkId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DriverFkId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CreateBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UpdateBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("BookingFkId", "DriverFkId");
+
+                    b.HasIndex("DriverFkId");
+
+                    b.ToTable("BookingDrivers");
+                });
+
+            modelBuilder.Entity("Cabs.Areas.Website.Models.BookingModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("CompanyFkId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CreateBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("CustomerFkId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DriverFkId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DropDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DropLocation")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("PickupDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("PickupLocation")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UpdateBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CustomerFkId");
+
+                    b.ToTable("Bookings");
+                });
+
+            modelBuilder.Entity("Cabs.Areas.Website.Models.CompanyModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("ContactPerson")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CreateBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Designation")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FaxNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("MembershipType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Mobile")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PaymentType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Telephone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UpdateBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("UserFkId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserFkId")
+                        .IsUnique();
+
+                    b.ToTable("Companies");
+                });
+
+            modelBuilder.Entity("Cabs.Areas.Website.Models.DriverModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Brand")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Color")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("CompanyFkId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ContactPerson")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CreateBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Experience")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("LicensePlate")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Mobile")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Model")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PaymentType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Telephone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UpdateBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("UserFkId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Year")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CompanyFkId");
+
+                    b.HasIndex("UserFkId");
+
+                    b.ToTable("Drivers");
+                });
+
+            modelBuilder.Entity("Cabs.Areas.Website.Models.FeedbackModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CreateBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("CustomerFkId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("MobileNo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UpdateBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CustomerFkId");
+
+                    b.ToTable("Feedbacks");
+                });
+
+            modelBuilder.Entity("Cabs.Areas.Website.Models.ImageModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("CompanyFkId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CreateBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("DriverFkId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ImageName")
+                        .IsRequired()
+                        .HasMaxLength(152)
+                        .HasColumnType("nvarchar(152)");
+
+                    b.Property<string>("ImagePath")
+                        .IsRequired()
+                        .HasMaxLength(152)
+                        .HasColumnType("nvarchar(152)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UpdateBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CompanyFkId");
+
+                    b.HasIndex("DriverFkId");
+
+                    b.ToTable("Images");
+                });
+
+            modelBuilder.Entity("Cabs.Areas.Website.Models.PaymentModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("BookingFkId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CompanyFkId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CreateBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("CustomerFkId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DriverFkId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("PaymentDatetime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UpdateBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BookingFkId")
+                        .IsUnique();
+
+                    b.ToTable("Payments");
+                });
+
+            modelBuilder.Entity("Cabs.Areas.Website.Models.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CustomEmail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<int>("OtherEntitiesFkId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Role")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedEmail")
+                        .HasDatabaseName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasDatabaseName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole<int>", b =>
@@ -185,597 +778,162 @@ namespace Cabs.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("TaxiDemo.Models.AdvertiseImageModels", b =>
+            modelBuilder.Entity("Cabs.Areas.Website.Models.AdvertiseImageModels", b =>
                 {
-                    b.Property<int>("ImageId")
-                        .HasColumnType("int");
+                    b.HasOne("Cabs.Areas.Website.Models.AdvertiseModel", "Advertise")
+                        .WithMany("AdvertiseImages")
+                        .HasForeignKey("AdvertiseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Property<int>("AdvertiseId")
-                        .HasColumnType("int");
+                    b.HasOne("Cabs.Areas.Website.Models.ImageModel", "Image")
+                        .WithMany("ImageAdvertises")
+                        .HasForeignKey("ImageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasKey("ImageId", "AdvertiseId");
+                    b.Navigation("Advertise");
 
-                    b.HasIndex("AdvertiseId");
-
-                    b.ToTable("AdvertiseImages");
+                    b.Navigation("Image");
                 });
 
-            modelBuilder.Entity("TaxiDemo.Models.AdvertiseModel", b =>
+            modelBuilder.Entity("Cabs.Areas.Website.Models.AdvertiseModel", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                    b.HasOne("Cabs.Areas.Website.Models.CompanyModel", "Company")
+                        .WithMany("Advertises")
+                        .HasForeignKey("CompanyFkId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    b.HasOne("Cabs.Areas.Website.Models.DriverModel", "Driver")
+                        .WithMany("Advertises")
+                        .HasForeignKey("DriverFkId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
 
-                    b.Property<string>("Address")
-                        .HasColumnType("nvarchar(max)");
+                    b.Navigation("Company");
 
-                    b.Property<int>("CompanyFkId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("CompanyName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CreateBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Designation")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("DriverFkId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FaxNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Mobile")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PaymentType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Telephone")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UpdateBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("UpdateDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CompanyFkId");
-
-                    b.HasIndex("DriverFkId");
-
-                    b.ToTable("Advertises");
+                    b.Navigation("Driver");
                 });
 
-            modelBuilder.Entity("TaxiDemo.Models.BookingCompany", b =>
+            modelBuilder.Entity("Cabs.Areas.Website.Models.BookingCompany", b =>
                 {
-                    b.Property<int>("BookingFkId")
-                        .HasColumnType("int");
+                    b.HasOne("Cabs.Areas.Website.Models.BookingModel", "Booking")
+                        .WithMany("BookingCompanies")
+                        .HasForeignKey("BookingFkId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
 
-                    b.Property<int>("CompanyFkId")
-                        .HasColumnType("int");
+                    b.HasOne("Cabs.Areas.Website.Models.CompanyModel", "Company")
+                        .WithMany("BookingCompanies")
+                        .HasForeignKey("CompanyFkId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
 
-                    b.Property<string>("CreateBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Navigation("Booking");
 
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("UpdateBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("UpdateDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("BookingFkId", "CompanyFkId");
-
-                    b.HasIndex("CompanyFkId");
-
-                    b.ToTable("BookingCompanies");
+                    b.Navigation("Company");
                 });
 
-            modelBuilder.Entity("TaxiDemo.Models.BookingDriver", b =>
+            modelBuilder.Entity("Cabs.Areas.Website.Models.BookingDriver", b =>
                 {
-                    b.Property<int>("BookingFkId")
-                        .HasColumnType("int");
+                    b.HasOne("Cabs.Areas.Website.Models.BookingModel", "Booking")
+                        .WithMany("BookingDrivers")
+                        .HasForeignKey("BookingFkId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
 
-                    b.Property<int>("DriverFkId")
-                        .HasColumnType("int");
+                    b.HasOne("Cabs.Areas.Website.Models.DriverModel", "Driver")
+                        .WithMany("BookingDrivers")
+                        .HasForeignKey("DriverFkId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
 
-                    b.Property<string>("CreateBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Navigation("Booking");
 
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("UpdateBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("UpdateDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("BookingFkId", "DriverFkId");
-
-                    b.HasIndex("DriverFkId");
-
-                    b.ToTable("BookingDrivers");
+                    b.Navigation("Driver");
                 });
 
-            modelBuilder.Entity("TaxiDemo.Models.BookingModel", b =>
+            modelBuilder.Entity("Cabs.Areas.Website.Models.BookingModel", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                    b.HasOne("Cabs.Areas.Website.Models.User", "User")
+                        .WithMany("Bookings")
+                        .HasForeignKey("CustomerFkId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("CompanyFkId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("CreateBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("CustomerFkId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("DriverFkId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("DropDateTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("DropLocation")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("PickupDateTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("PickupLocation")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UpdateBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("UpdateDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CustomerFkId");
-
-                    b.ToTable("Bookings");
+                    b.Navigation("User");
                 });
 
-            modelBuilder.Entity("TaxiDemo.Models.CompanyModel", b =>
+            modelBuilder.Entity("Cabs.Areas.Website.Models.CompanyModel", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                    b.HasOne("Cabs.Areas.Website.Models.User", "User")
+                        .WithOne("Company")
+                        .HasForeignKey("Cabs.Areas.Website.Models.CompanyModel", "UserFkId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("ContactPerson")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CreateBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Designation")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FaxNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("MembershipType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Mobile")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PaymentType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Telephone")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UpdateBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("UpdateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("UserFkId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserFkId")
-                        .IsUnique();
-
-                    b.ToTable("Companies");
+                    b.Navigation("User");
                 });
 
-            modelBuilder.Entity("TaxiDemo.Models.DriverModel", b =>
+            modelBuilder.Entity("Cabs.Areas.Website.Models.DriverModel", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                    b.HasOne("Cabs.Areas.Website.Models.CompanyModel", "Company")
+                        .WithMany("Drivers")
+                        .HasForeignKey("CompanyFkId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    b.HasOne("Cabs.Areas.Website.Models.User", "User")
+                        .WithMany("Drivers")
+                        .HasForeignKey("UserFkId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
 
-                    b.Property<string>("Brand")
-                        .HasColumnType("nvarchar(max)");
+                    b.Navigation("Company");
 
-                    b.Property<string>("City")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Color")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("CompanyFkId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ContactPerson")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CreateBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Experience")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("LicensePlate")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Mobile")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Model")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PaymentType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Telephone")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UpdateBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("UpdateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("UserFkId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Year")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CompanyFkId");
-
-                    b.HasIndex("UserFkId");
-
-                    b.ToTable("Drivers");
+                    b.Navigation("User");
                 });
 
-            modelBuilder.Entity("TaxiDemo.Models.FeedbackModel", b =>
+            modelBuilder.Entity("Cabs.Areas.Website.Models.FeedbackModel", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                    b.HasOne("Cabs.Areas.Website.Models.User", "User")
+                        .WithMany("Feedbacks")
+                        .HasForeignKey("CustomerFkId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("City")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CreateBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("CustomerFkId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("MobileNo")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Type")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UpdateBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("UpdateDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CustomerFkId");
-
-                    b.ToTable("Feedbacks");
+                    b.Navigation("User");
                 });
 
-            modelBuilder.Entity("TaxiDemo.Models.ImageModel", b =>
+            modelBuilder.Entity("Cabs.Areas.Website.Models.ImageModel", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                    b.HasOne("Cabs.Areas.Website.Models.CompanyModel", "Company")
+                        .WithMany("Images")
+                        .HasForeignKey("CompanyFkId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    b.HasOne("Cabs.Areas.Website.Models.DriverModel", "Driver")
+                        .WithMany("Images")
+                        .HasForeignKey("DriverFkId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
 
-                    b.Property<int>("CompanyFkId")
-                        .HasColumnType("int");
+                    b.Navigation("Company");
 
-                    b.Property<string>("CreateBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("DriverFkId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ImageName")
-                        .IsRequired()
-                        .HasMaxLength(152)
-                        .HasColumnType("nvarchar(152)");
-
-                    b.Property<string>("ImagePath")
-                        .IsRequired()
-                        .HasMaxLength(152)
-                        .HasColumnType("nvarchar(152)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("UpdateBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("UpdateDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CompanyFkId");
-
-                    b.HasIndex("DriverFkId");
-
-                    b.ToTable("Images");
+                    b.Navigation("Driver");
                 });
 
-            modelBuilder.Entity("TaxiDemo.Models.PaymentModel", b =>
+            modelBuilder.Entity("Cabs.Areas.Website.Models.PaymentModel", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                    b.HasOne("Cabs.Areas.Website.Models.BookingModel", "Booking")
+                        .WithOne("Payment")
+                        .HasForeignKey("Cabs.Areas.Website.Models.PaymentModel", "BookingFkId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<decimal>("Amount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("BookingFkId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CompanyFkId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("CreateBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("CustomerFkId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("DriverFkId")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("PaymentDatetime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UpdateBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("UpdateDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BookingFkId")
-                        .IsUnique();
-
-                    b.ToTable("Payments");
-                });
-
-            modelBuilder.Entity("TaxiDemo.Models.User", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Address")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CustomEmail")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Image")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("LockoutEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NormalizedEmail")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("NormalizedUserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<int>("OtherEntitiesFkId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Password")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PasswordHash")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("PhoneNumberConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Role")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SecurityStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("UserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedEmail")
-                        .HasDatabaseName("EmailIndex");
-
-                    b.HasIndex("NormalizedUserName")
-                        .IsUnique()
-                        .HasDatabaseName("UserNameIndex")
-                        .HasFilter("[NormalizedUserName] IS NOT NULL");
-
-                    b.ToTable("Users", (string)null);
+                    b.Navigation("Booking");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -789,7 +947,7 @@ namespace Cabs.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<int>", b =>
                 {
-                    b.HasOne("TaxiDemo.Models.User", null)
+                    b.HasOne("Cabs.Areas.Website.Models.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -798,7 +956,7 @@ namespace Cabs.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
                 {
-                    b.HasOne("TaxiDemo.Models.User", null)
+                    b.HasOne("Cabs.Areas.Website.Models.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -813,7 +971,7 @@ namespace Cabs.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("TaxiDemo.Models.User", null)
+                    b.HasOne("Cabs.Areas.Website.Models.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -822,177 +980,19 @@ namespace Cabs.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
                 {
-                    b.HasOne("TaxiDemo.Models.User", null)
+                    b.HasOne("Cabs.Areas.Website.Models.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("TaxiDemo.Models.AdvertiseImageModels", b =>
-                {
-                    b.HasOne("TaxiDemo.Models.AdvertiseModel", "Advertise")
-                        .WithMany("AdvertiseImages")
-                        .HasForeignKey("AdvertiseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("TaxiDemo.Models.ImageModel", "Image")
-                        .WithMany("ImageAdvertises")
-                        .HasForeignKey("ImageId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Advertise");
-
-                    b.Navigation("Image");
-                });
-
-            modelBuilder.Entity("TaxiDemo.Models.AdvertiseModel", b =>
-                {
-                    b.HasOne("TaxiDemo.Models.CompanyModel", "Company")
-                        .WithMany("Advertises")
-                        .HasForeignKey("CompanyFkId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("TaxiDemo.Models.DriverModel", "Driver")
-                        .WithMany("Advertises")
-                        .HasForeignKey("DriverFkId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("Company");
-
-                    b.Navigation("Driver");
-                });
-
-            modelBuilder.Entity("TaxiDemo.Models.BookingCompany", b =>
-                {
-                    b.HasOne("TaxiDemo.Models.BookingModel", "Booking")
-                        .WithMany("BookingCompanies")
-                        .HasForeignKey("BookingFkId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("TaxiDemo.Models.CompanyModel", "Company")
-                        .WithMany("BookingCompanies")
-                        .HasForeignKey("CompanyFkId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("Booking");
-
-                    b.Navigation("Company");
-                });
-
-            modelBuilder.Entity("TaxiDemo.Models.BookingDriver", b =>
-                {
-                    b.HasOne("TaxiDemo.Models.BookingModel", "Booking")
-                        .WithMany("BookingDrivers")
-                        .HasForeignKey("BookingFkId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("TaxiDemo.Models.DriverModel", "Driver")
-                        .WithMany("BookingDrivers")
-                        .HasForeignKey("DriverFkId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("Booking");
-
-                    b.Navigation("Driver");
-                });
-
-            modelBuilder.Entity("TaxiDemo.Models.BookingModel", b =>
-                {
-                    b.HasOne("TaxiDemo.Models.User", "User")
-                        .WithMany("Bookings")
-                        .HasForeignKey("CustomerFkId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("TaxiDemo.Models.CompanyModel", b =>
-                {
-                    b.HasOne("TaxiDemo.Models.User", "User")
-                        .WithOne("Company")
-                        .HasForeignKey("TaxiDemo.Models.CompanyModel", "UserFkId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("TaxiDemo.Models.DriverModel", b =>
-                {
-                    b.HasOne("TaxiDemo.Models.CompanyModel", "Company")
-                        .WithMany("Drivers")
-                        .HasForeignKey("CompanyFkId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("TaxiDemo.Models.User", "User")
-                        .WithMany("Drivers")
-                        .HasForeignKey("UserFkId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("Company");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("TaxiDemo.Models.FeedbackModel", b =>
-                {
-                    b.HasOne("TaxiDemo.Models.User", "User")
-                        .WithMany("Feedbacks")
-                        .HasForeignKey("CustomerFkId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("TaxiDemo.Models.ImageModel", b =>
-                {
-                    b.HasOne("TaxiDemo.Models.CompanyModel", "Company")
-                        .WithMany("Images")
-                        .HasForeignKey("CompanyFkId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("TaxiDemo.Models.DriverModel", "Driver")
-                        .WithMany("Images")
-                        .HasForeignKey("DriverFkId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("Company");
-
-                    b.Navigation("Driver");
-                });
-
-            modelBuilder.Entity("TaxiDemo.Models.PaymentModel", b =>
-                {
-                    b.HasOne("TaxiDemo.Models.BookingModel", "Booking")
-                        .WithOne("Payment")
-                        .HasForeignKey("TaxiDemo.Models.PaymentModel", "BookingFkId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("Booking");
-                });
-
-            modelBuilder.Entity("TaxiDemo.Models.AdvertiseModel", b =>
+            modelBuilder.Entity("Cabs.Areas.Website.Models.AdvertiseModel", b =>
                 {
                     b.Navigation("AdvertiseImages");
                 });
 
-            modelBuilder.Entity("TaxiDemo.Models.BookingModel", b =>
+            modelBuilder.Entity("Cabs.Areas.Website.Models.BookingModel", b =>
                 {
                     b.Navigation("BookingCompanies");
 
@@ -1001,7 +1001,7 @@ namespace Cabs.Migrations
                     b.Navigation("Payment");
                 });
 
-            modelBuilder.Entity("TaxiDemo.Models.CompanyModel", b =>
+            modelBuilder.Entity("Cabs.Areas.Website.Models.CompanyModel", b =>
                 {
                     b.Navigation("Advertises");
 
@@ -1012,7 +1012,7 @@ namespace Cabs.Migrations
                     b.Navigation("Images");
                 });
 
-            modelBuilder.Entity("TaxiDemo.Models.DriverModel", b =>
+            modelBuilder.Entity("Cabs.Areas.Website.Models.DriverModel", b =>
                 {
                     b.Navigation("Advertises");
 
@@ -1021,12 +1021,12 @@ namespace Cabs.Migrations
                     b.Navigation("Images");
                 });
 
-            modelBuilder.Entity("TaxiDemo.Models.ImageModel", b =>
+            modelBuilder.Entity("Cabs.Areas.Website.Models.ImageModel", b =>
                 {
                     b.Navigation("ImageAdvertises");
                 });
 
-            modelBuilder.Entity("TaxiDemo.Models.User", b =>
+            modelBuilder.Entity("Cabs.Areas.Website.Models.User", b =>
                 {
                     b.Navigation("Bookings");
 
