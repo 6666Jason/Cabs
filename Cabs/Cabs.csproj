@@ -27,8 +27,6 @@
 
   <ItemGroup>
     <Folder Include="Areas\Admin\" />
-    <Folder Include="Areas\Website\Repositories\" />
-    <Folder Include="Areas\Website\Services\" />
   </ItemGroup>
 
 </Project>

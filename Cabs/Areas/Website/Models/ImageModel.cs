@@ -12,6 +12,8 @@ namespace Cabs.Areas.Website.Models
         [StringLength(152, MinimumLength = 0, ErrorMessage = "ImagePath không quá 152 ký tự.")]
         [Required(ErrorMessage = "ImagePath là bắt buộc.")]
         public string ImagePath { get; set; } = string.Empty;
+        public string Url { get; set; } = string.Empty;
+        public string FileName { get; set; } = string.Empty;
 
         [ForeignKey("DriverFkId")]
         public int DriverFkId { get; set; }

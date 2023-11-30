@@ -1,4 +1,5 @@
-﻿using Cabs.Areas.Website.Models;
+﻿using Cabs.Areas.Website.ModelDtos;
+using Cabs.Areas.Website.Models;
 using Cabs.Areas.Website.Models.Authenication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -146,6 +147,7 @@ namespace Cabs.Data
         public DbSet<AdvertiseModel>? Advertises { get; set; }
         public DbSet<BookingModel>? Bookings { get; set; }
         public DbSet<CompanyModel>? Companies { get; set; }
+        public DbSet<CompanyDto>? CompanyDtos { get; set; }
         public DbSet<DriverModel>? Drivers { get; set; }
         public DbSet<FeedbackModel>? Feedbacks { get; set; }
         public DbSet<PaymentModel>? Payments { get; set; }
